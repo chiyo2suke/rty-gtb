@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<!-- Add or remove rows in the old banzuke table if necessary -->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <script type="text/javascript" src="redips-drag-min.js"></script>
+  <script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>
+  <link rel="stylesheet" href="styles.css" type="text/css"/>
+  <script type="module" src="script.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js"></script>
+  <script async defer src="https://accounts.google.com/gsi/client"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <title>RTY GTB</title>
+</head>
+<body>
+  <header>
+    <h1><span id="gtb">Guess the 'Road To Yokozuna' Banzuke </span></h1>
+    <div id="links">
+    </div>
+    <!--
+    <button type="button" id="copyDraft">Copy draft</button>
+    <input type="text" id="draftString" style="display: none;">
+    -->
+    <ul>
+    </ul>
+    <div id="options">
+      <fieldset class="option">
+        <legend>Double-click on rikishi</Legend>
+          <label><input type="radio" class="checkbox" name="onDoubleClick" value="returnToOld">Return it to the old banzuke</label>
+          <br>
+          <label><input type="radio" class="checkbox" name="onDoubleClick" value="doNothing">Do nothing</label>
+        </fieldset>
+        <fieldset class="option">
+          <legend>Dropping on an occupied slot</legend>
+          <label title=""><input type="radio" class="checkbox" name="dropMode" value="multiple">Stack</label>
+          <label title="Make room and lower rikishi below by one slot"><input type="radio" class="checkbox" name="dropMode" value="shift">Shift</label>
+          <label title="Don't drop to occupied slot"><input type="radio" class="checkbox" name="dropMode" value="disable">Disable</label>
+        </fieldset>
+      <!--
+      <fieldset id="hoshitori" class="option">
+        <legend><label><input id="hoshiCheckbox" type="checkbox" name="checkbox" autocomplete="on">Hover over rikishi to highlight his opponents</label></legend>
+        Explanation
+        <div class="hoshitoriLegend" style="border: 2px solid black;">Win</div>
+        <div class="hoshitoriLegend" style="border: 2px solid red;">Loss</div>
+        <div class="hoshitoriLegend" style="border: 2px dashed black;">Win by fusen</div>
+        <div class="hoshitoriLegend" style="border: 2px dashed red;">Loss by fusen</div>
+        <div class="hoshitoriLegend" style="border: 2px outset #84848491; outline: 2px solid black; outline-offset: 2px;">Win in play-off</div>
+        <div class="hoshitoriLegend" style="border: 2px outset #84848491; outline: 2px solid red; outline-offset: 2px;">Loss in play-off</div>
+      </fieldset>
+    -->
+    <fieldset id="miscellany" class="option">
+      <legend>Miscellany</legend>
+      Export table data into CSV 
+      <a href="#" id="exportToCsv1" class="exportToCsvButton">Table 1</a>
+      <a href="#" id="exportToCsv2" class="exportToCsvButton">Table 2</a>
+      <label><input id="tooltipCheckbox" type="checkbox" name="checkbox" autocomplete="on">Disable tooltips</label>
+      <button id="autoArrange">Auto-arrange to current ranks</button>
+      <button id="resetBanzuke">Reset changes</button>
+    </fieldset>
+    <fieldset id="saveLoad" class="option">
+      <legend>Save/load drafts</legend>
+      <button id="saveDraft">Save draft</button>
+      <dialog id="saveDialog">
+        <input type="text" name="" id="draftName" placeholder="name (optional)" autocomplete="off">
+        <br>
+        <button id="saveDraftButton">Save</button>
+        <button id="closeDialog">Cancel</button>
+      </dialog>
+      <div id="draftsTableContainer">
+        <table id="draftsTable">
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </fieldset>
+    <label id="darkMode"> 
+      Dark Mode <input type="checkbox" id="ChangeTheme"/>
+    </label>
+  </div>
+    <!--
+    <div id="saveLoadProgress">
+      <button id="signinButton">Sign in with Google</button>
+      <button id="signoutButton">Sign out</button>
+      <button id="saveToDrive">Save banzuke</button>
+      <button id="loadSave">Load last saved banzuke</button>
+      <span id="messageLine"></span>
+    </div>
+  -->
+</header>
+<div id="redips-drag">
+  <div id="tableContainer">
+    <div id="shadowLeft"></div>
+    <table id="tableLiner" class="mainTable">
+      <span id="progressText"></span>
+      <tr><td class="banzukeContainer">
+        <div id="pop1" class="columnPopup">
+          Columns... 
+          <label><input id="colCheck1" autocomplete="off" class="columnCheckbox forB1 checkedByDefault" type="checkbox" value="rs1">Result</label>
+          <label><input id="colCheck2" autocomplete="off" class="columnCheckbox forB1" type="checkbox" value="new">New Rank</label>
+          <label><input id="colCheck3" autocomplete="off" class="columnCheckbox forB1" type="checkbox" value="ch1">Rank Change</label>
+        </div>
+        <table id="banzuke1" class="banzukeTable">
+          <thead>
+            <tr>
+              <th colspan="5" class="tableTitle"></th>
+            </tr>
+            <tr class="theader">
+              <th class="rs1">Result</th><th>East</th><th class="new hid">New<br>Rank</th><th class="ch1 hid">Rank<br>Chg.</th><th>Rank</th><th>West</th><th class="rs1">Result</th><th class="new hid">New<br>Rank</th><th class="ch1 hid">Rank<br>Chg.</th>
+            </tr>
+          </thead>
+          <tbody id="banzuke1Body">
+          </tbody>
+        </table>
+      </td><td class="banzukeContainer">
+        <div class="columnPopup">
+          <label><input id="colCheck4" autocomplete="off" class="columnCheckbox forB2 checkedByDefault" type="checkbox" value="rs2">Result</label>
+          <label><input id="colCheck5" autocomplete="off" class="columnCheckbox forB2 checkedByDefault" type="checkbox" value="cur">Current Rank</label>
+          <label><input id="colCheck6" autocomplete="off" class="columnCheckbox forB2 checkedByDefault" type="checkbox" value="ch2">Rank Change</label>
+          <label><input id="colCheck7" autocomplete="off" class="columnCheckbox forB2" type="checkbox" value="nte">Notes</label>
+        </div>
+        <table id="banzuke2" class="mainTable banzukeTable">
+          <thead>
+            <tr>
+              <th colspan="9" class="tableTitle"><span id="makRik">0</span>/42</th>
+            </tr>
+            <tr class="theader">
+              <th class="nte hid">Notes</th><th class="cur">Curr.<br>Rank</th><th>East</th><th class="rs2">Result</th><th class="ch2">Rank<br>Chg.</th><th>Rank</th><th class="cur">Curr.<br>Rank</th><th>West</th><th class="rs2">Result</th><th class="ch2">Rank<br>Chg.</th><th class="nte hid">Notes</th>
+            </tr>
+          </thead>
+          <tbody id="banzuke2Body">
+          </tbody>
+        </table>
+      </td></tr>
+    </table>
+    <div id="shadowRight"></div>
+  </div>
+</div>
+<footer>
+  Created by Chiyotasuke
+  <br>
+  Based on Tsuchinoninjin's Helper Page
+</footer>
+</body>
+</html>
