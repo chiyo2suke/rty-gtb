@@ -3,8 +3,8 @@
  * as plain text and then turn them into array like this.
  */
 var theSekitori = [
-  "O1e Kokuchozan 12-3 Y",
-  "O1w Senshi 13-2 J",
+  "O1e Kokuchozan 12-3 J",
+  "O1w Senshi 13-2 Y",
   "O2e Dozan 7-8",
   "S1e Kaikaryu 4-7",
   "S1w Kaitetsu 7-8",

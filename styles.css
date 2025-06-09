@@ -11,6 +11,10 @@ body {
   margin: 0;
 }
 
+.initCell span {
+  margin: 0 3px;
+}
+
 .darkm .banzukeTable span {
   text-shadow: none;
 }
