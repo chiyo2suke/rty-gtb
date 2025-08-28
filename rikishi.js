@@ -124,7 +124,6 @@ var theSekitori = [
  */
 var retiredRikishi = [
   "Kazesosha",
-  "Kamahiko",
   "Takakeumi",
   "Koizumi",
   "Harubayama",

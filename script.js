@@ -3,6 +3,16 @@
 import { exportTableToCSV } from './export.js';
 import { allRikishi, RetiredRikishi } from './rikishi.js';
 
+function fixKamahiko() {
+  var kama = document.getElementById("M3w");
+
+  kama.className = "redips-drag se";
+  kama.setAttribute("title", "");
+  kama.style.backgroundColor = "";
+  redips.init();
+  saveBanzuke();
+}
+
 /*
 var shikonaCells = document.getElementsByClassName("shikona");
 var theRikishi = [], rikishiID = [];
@@ -1180,6 +1190,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+  fixKamahiko();
 });
 
 function populateBanzukeTable(tableId, config, createRow) {
