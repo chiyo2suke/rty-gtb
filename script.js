@@ -901,20 +901,18 @@ else if (window.attachEvent) window.attachEvent("onload", redips.init);
 
 document.addEventListener('DOMContentLoaded', function() {
   
-  var basho = "202507"; // The date of the basho just ended
+  var basho = "202509"; // The date of the basho just ended
   
   const banzuke1Config = [
       { prefix: 'Y', range: [1] },
       { prefix: 'O', range: [1] },
-      { prefix: 'S', range: [1] },
+      { prefix: 'S', range: [1, 2] },
       { prefix: 'K', range: [1] },
       { prefix: 'M', range: Array.from({length: 18}, (_, i) => i + 1) },
       { divider: true },
       { prefix: 'J', range: Array.from({length: 14}, (_, i) => i + 1) },
       { divider: true },
-      { prefix: 'Ms', range: Array.from({length: 12}, (_, i) => i + 1) },
-      { divider: true },
-      { prefix: 'Sd', range: Array.from({length: 10}, (_, i) => i + 1) }
+      { prefix: 'Ms', range: Array.from({length: 21}, (_, i) => i + 1) }
   ];
 
   const banzuke2Config = [
@@ -925,10 +923,8 @@ document.addEventListener('DOMContentLoaded', function() {
       { prefix: 'M', range: Array.from({length: 19}, (_, i) => i + 1) },
       { divider: 'Juryo Guess - <span id="juRik">0</span>/28' },
       { prefix: 'J', range: Array.from({length: 14}, (_, i) => i + 1) },
-      { divider: 'Makushita Guess - <span id="msRik">0</span>/24' },
-      { prefix: 'Ms', range: Array.from({length: 12}, (_, i) => i + 1) },
-      { divider: 'Sandanme Guess' },
-      { prefix: 'Sd', range: Array.from({length: 12}, (_, i) => i + 1) }
+      { divider: 'Makushita Guess - <span id="msRik">0</span>/40' },
+      { prefix: 'Ms', range: Array.from({length: 20}, (_, i) => i + 1) }
   ];
 
   // This must be a hyperlink
@@ -953,7 +949,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ***************************************************************************
   if (window.localStorage.getItem("savedBanzuke") !== null) {
     var saveDate = Date.parse(window.localStorage.getItem("savedBanzukeTime")),
-      expireDate = new Date(Date.UTC(2025, 7, 27, 8, 40)); //UTC time
+      expireDate = new Date(Date.UTC(2025, 9, 28, 6, 5)); //UTC time
 
     if (saveDate < expireDate) window.localStorage.removeItem("savedBanzuke");
     else {
@@ -1190,7 +1186,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
-  fixKamahiko();
+  //fixKamahiko();
 });
 
 function populateBanzukeTable(tableId, config, createRow) {
