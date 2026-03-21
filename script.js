@@ -901,18 +901,18 @@ else if (window.attachEvent) window.attachEvent("onload", redips.init);
 
 document.addEventListener('DOMContentLoaded', function() {
   
-  var basho = "202511"; // The date of the basho just ended
+  var basho = "202601"; // The date of the basho just ended
   
   const banzuke1Config = [
       { prefix: 'Y', range: [1] },
       { prefix: 'O', range: [1] },
       { prefix: 'S', range: [1] },
       { prefix: 'K', range: [1] },
-      { prefix: 'M', range: Array.from({length: 18}, (_, i) => i + 1) },
+      { prefix: 'M', range: Array.from({length: 17}, (_, i) => i + 1) },
       { divider: true },
       { prefix: 'J', range: Array.from({length: 14}, (_, i) => i + 1) },
       { divider: true },
-      { prefix: 'Ms', range: Array.from({length: 22}, (_, i) => i + 1) }
+      { prefix: 'Ms', range: Array.from({length: 21}, (_, i) => i + 1) }
   ];
 
   const banzuke2Config = [
@@ -924,7 +924,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { divider: 'Juryo Guess - <span id="juRik">0</span>/28' },
       { prefix: 'J', range: Array.from({length: 14}, (_, i) => i + 1) },
       { divider: 'Makushita Guess - <span id="msRik">0</span>/40' },
-      { prefix: 'Ms', range: Array.from({length: 20}, (_, i) => i + 1) }
+      { prefix: 'Ms', range: Array.from({length: 21}, (_, i) => i + 1) }
   ];
 
   // This must be a hyperlink
@@ -949,7 +949,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ***************************************************************************
   if (window.localStorage.getItem("savedBanzuke") !== null) {
     var saveDate = Date.parse(window.localStorage.getItem("savedBanzukeTime")),
-      expireDate = new Date(Date.UTC(2026, 0, 5, 13, 50)); //UTC time
+      expireDate = new Date(Date.UTC(2026, 2, 21, 8, 15)); //UTC time
 
     if (saveDate < expireDate) window.localStorage.removeItem("savedBanzuke");
     else {
