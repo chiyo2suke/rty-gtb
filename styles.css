@@ -15,6 +15,14 @@ body {
   margin: 2px;
 }
 
+.darkm td .redips-drag, .redips-nodrag {
+  border: 2px outset #545454;
+}
+
+.darkm [data-w="Kyujo"] {
+  background-color: #595917;
+}
+
 [data-w="Kyujo"] {
   background-color: #ffff7f;
 }
@@ -630,7 +638,7 @@ footer {
 .darkm .banzukeTable td {
   background-color: #3c3c3c;
   border-color: #5b5b5b;
-  color: white;
+  color: #e0e0e0;
 }
 
 .darkm .b2 {
