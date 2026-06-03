@@ -15,7 +15,7 @@ var theSekitori = [
 "M1w Nekonoyama 8-7",
 "M2e Kaeruwani 9-6",
 "M2w Otaiho 6-9",
-"M3e Bunbukuchagama 6-9,
+"M3e Bunbukuchagama 6-9",
 "M3w Enkaga 0-0-15",
 "M4e Shitayama 9-6",
 "M4w Wakashaka 10-5",
