@@ -19,11 +19,11 @@ body {
   border: 2px outset #545454;
 }
 
-.darkm [data-w="Kyujo"] {
+.darkm [data-w^="Kyujo"] {
   background-color: #595917;
 }
 
-[data-w="Kyujo"] {
+[data-w^="Kyujo"] {
   background-color: #ffff7f;
 }
 
