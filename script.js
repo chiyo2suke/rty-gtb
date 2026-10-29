@@ -905,14 +905,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const banzuke1Config = [
       { prefix: 'Y', range: [1] },
-      { prefix: 'O', range: [1, 2] },
+      { prefix: 'O', range: [1] },
       { prefix: 'S', range: [1] },
       { prefix: 'K', range: [1] },
       { prefix: 'M', range: Array.from({length: 17}, (_, i) => i + 1) },
       { divider: true },
       { prefix: 'J', range: Array.from({length: 14}, (_, i) => i + 1) },
       { divider: true },
-      { prefix: 'Ms', range: Array.from({length: 25}, (_, i) => i + 1) }
+      { prefix: 'Ms', range: Array.from({length: 22}, (_, i) => i + 1) }
   ];
 
   const banzuke2Config = [
@@ -949,7 +949,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ***************************************************************************
   if (window.localStorage.getItem("savedBanzuke") !== null) {
     var saveDate = Date.parse(window.localStorage.getItem("savedBanzukeTime")),
-      expireDate = new Date(Date.UTC(2026, 7, 23, 16, 10)); //UTC time
+      expireDate = new Date(Date.UTC(2026, 9, 29, 4, 22)); //UTC time
 
     if (saveDate < expireDate) window.localStorage.removeItem("savedBanzuke");
     else {
